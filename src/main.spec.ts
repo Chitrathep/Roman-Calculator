@@ -5,8 +5,8 @@
 import { calculateRoman } from "./main"
 
 
-describe('NO.1', () => {
-  it('XXII', () => {
+describe('Roman-Calculator', () => {
+  it('Calculate XXII', () => {
     // given
     const roman1 = 'XX';
     const roman2 = 'II';
@@ -18,7 +18,7 @@ describe('NO.1', () => {
     expect(ans).toEqual('XXII');
   });
 
-  it('IV', () => {
+  it('Calculate IV', () => {
     // given
     const roman1 = 'II';
     const roman2 = 'II';
@@ -30,7 +30,7 @@ describe('NO.1', () => {
     expect(ans).toEqual('IV');
   });
 
-  it('LXXIV', () => {
+  it('Calculate LXXIV', () => {
     // given
     const roman1 = 'XIV';
     const roman2 = 'LX';
@@ -40,5 +40,17 @@ describe('NO.1', () => {
 
     // then
     expect(ans).toEqual('LXXIV');
+  });
+
+  it('Calculate DD', () => {
+    // given
+    const roman1 = 'D';
+    const roman2 = 'D';
+
+    // when
+    const ans = calculateRoman(roman1, roman2);
+
+    // then
+    expect(ans).toEqual('M');
   });
 });

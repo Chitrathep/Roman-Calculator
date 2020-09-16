@@ -2,28 +2,31 @@
 // Your implementations
 // 
 export const calculateRoman = (roman1: String, roman2: String) => {
-    return integer_to_roman(roman_to_Int(roman1) + roman_to_Int(roman2))
+    return integerToRoman(romanToInteger(roman1) + romanToInteger(roman2))
 }
 
-const roman_to_Int = (str1: String) => {
-    if (str1 == null) return -1;
-    let num = char_to_int(str1.charAt(0));
-    let pre, curr;
 
-    for (let i = 1; i < str1.length; i++) {
-        curr = char_to_int(str1.charAt(i));
-        pre = char_to_int(str1.charAt(i - 1));
-        if (curr <= pre) {
-            num += curr;
-        } else {
-            num = num - pre * 2 + curr;
+const romanToInteger = (str1: String) => {
+    const num: Array<number> = [charToInteger(str1.charAt(0))];
+
+    str1.split('').map((_, index) => {
+        const substr = index + 1
+        const curr: number = charToInteger(str1.charAt(substr))
+        const pre: number = charToInteger(str1.charAt(substr - 1))
+
+        if (substr + 1 <= str1.length) {
+            if (curr <= pre) {
+                num[0] += curr;
+            } else {
+                num[0] = num[0] - pre * 2 + curr;
+            }
         }
-    }
+    });
 
-    return num;
+    return num[0];
 }
 
-const char_to_int = (c: String) => {
+const charToInteger = (c: String) => {
     switch (c) {
         case 'I': return 1;
         case 'V': return 5;
@@ -36,7 +39,7 @@ const char_to_int = (c: String) => {
     }
 }
 
-const integer_to_roman = (num: Number) => {
+const integerToRoman = (num: Number) => {
     if (typeof num !== 'number')
         return false;
 
@@ -51,7 +54,7 @@ const integer_to_roman = (num: Number) => {
     return Array(+digits.join("") + 1).join("M") + roman_num;
 }
 
-console.log(roman_to_Int('XXVI'));
-console.log(roman_to_Int('CI'));
-console.log(roman_to_Int('XXVI') + roman_to_Int('CI'));
-console.log(integer_to_roman(roman_to_Int('XXVI') + roman_to_Int('CI')));
+// console.log(roman_to_Int('XXVI'));
+// console.log(roman_to_Int('CI'));
+// console.log(roman_to_Int('XXVI') + roman_to_Int('CI'));
+// console.log(integer_to_roman(roman_to_Int('XXVI') + roman_to_Int('CI')));
