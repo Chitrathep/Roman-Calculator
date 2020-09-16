@@ -29,4 +29,16 @@ describe('NO.1', () => {
     // then
     expect(ans).toEqual('IV');
   });
+
+  it('LXXIV', () => {
+    // given
+    const roman1 = 'XIV';
+    const roman2 = 'LX';
+
+    // when
+    const ans = calculateRoman(roman1, roman2);
+
+    // then
+    expect(ans).toEqual('LXXIV');
+  });
 });
