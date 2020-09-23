@@ -40,17 +40,19 @@ const charToInteger = (c: String) => {
 }
 
 const integerToRoman = (num: Number) => {
-    if (typeof num !== 'number')
-        return false;
 
-    let digits = String(+num).split(""),
-        key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
-            "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
-            "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],
-        roman_num = "",
-        i = 3;
-    while (i--)
-        roman_num = (key[+digits.pop()! + (i * 10)] || "") + roman_num;
+    const key = [
+        "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+        "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+        "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+    ]
+
+    let digits = String(num).split("")
+    const count = [2, 1, 0];
+    const roman_num = count.map((item) => {
+        return (key[+digits.pop()! + (item * 10)] || "")
+    }).reverse().join('');
+
     return Array(+digits.join("") + 1).join("M") + roman_num;
 }
 
